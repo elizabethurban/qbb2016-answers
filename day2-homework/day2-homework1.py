@@ -6,17 +6,28 @@ f = open(sys.argv[1]) #input flydata.txt
 
 mapping = {}
 #filter out all lines lacking "DROME" and if the the length of fields is not 4
-for line in f.readlines():
+for line in f:
     fields = line.rstrip("\r\n").split()
     if "DROME" not in line:
         continue
-    
+
     if len(fields) != 4:
         continue
     else:
         print fields[3], "\t", fields[1] #print day2-homework2.out
         
-        
+# *** there is a difference between f.readlines() and f.readline() and for line in f: *** 
+
+
+# for line in f.readlines():
+#     fields = line.rstrip("\r\n").split()
+#     if "DROME" not in line:
+#         continue
+#
+#     if len(fields) != 4:
+#         continue
+#     else:
+#         print fields[3], "\t", fields[1]
         
         
     
