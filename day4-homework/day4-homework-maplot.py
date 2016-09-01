@@ -17,8 +17,8 @@ fpkm = df["FPKM"].values
 fpkm2 = df2["FPKM"].values
 
 #determine log of fpkm values
-fpkm_log = np.log(fpkm)
-fpkm_log2 = np.log(fpkm2)
+fpkm_log = np.log(fpkm + 1)
+fpkm_log2 = np.log(fpkm2 + 1)
 
 #define m and a as follows:
 m = (fpkm_log - fpkm_log2)
