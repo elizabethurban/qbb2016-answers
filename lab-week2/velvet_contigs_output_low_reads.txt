@@ -1,0 +1,5 @@
+303 number of contigs
+998 max contigs length
+61 min contigs length
+187.9669967 mean contig length
+255 n50
