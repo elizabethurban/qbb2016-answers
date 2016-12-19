@@ -18,6 +18,7 @@ plt.style.use('ggplot')
 
 
 df = open(sys.argv[1])
+df2 = open(sys.argv[2])
 
 early_stages = []
 late_stages = []
@@ -31,6 +32,7 @@ genes = {}
 
 for i, line in enumerate(df):
     fields = line.split("\t")
+    #print fields[0] + "\t" + fields[1] + "\t" + fields[5] + "\t" + fields[2] + "\t" + fields[3]
     if i == 0:
         continue
     else:
@@ -69,10 +71,19 @@ intensity_ratio = []
 ratio = (early_stages_array/ late_stages_array)
 intensity_ratio.append(ratio)
 #intensity_ratio = np.array(intensity_ratio).tolist()
-minimum = np.min(intensity_ratio)
-print minimum 
-#print intensity_ratio
-#print intensity_ratio_list
+drats = []
+rat = np.array(intensity_ratio).tolist()
+drats.append(rat)
+
+
+#print len(drats)
+
+# # print intensity_ratio_list
+# for i, value in enumerate(drats):
+#     if value == 0.0296002034945:
+#         print i
+#     else:
+#         continue
 
 upregulated_genes = []
 upregulated_genes_position = []
@@ -110,8 +121,24 @@ for position, gene in genes.items():
     else:
         leftover_genes_names.append(gene)
 
-early = np.array(average_early).tolist()
-late = np.array(average_late).tolist()
+# early = np.array(average_early).tolist()
+# late = np.array(average_late).tolist()
 
-t = ttest(early, late)
-# print t
+early_vals = []
+late_vals = []
+gene_titles = []
+for i, line in enumerate(df2):
+    fields = line.split("\t")
+    if i == 0:
+        continue
+    else:
+        early = (fields[1], fields[2])
+        late = (fields[3], fields[4])
+        gene_titles.append(fields[0])
+        early_vals.append(early)
+        late_vals.append(late)
+  
+#print sorted(late_vals)
+
+t = ttest(early_vals, late_vals)
+print t
